@@ -1,0 +1,9 @@
+{
+    "require": {
+        "codeception/codeception": "^4.0",
+        "codeception/module-asserts": "^1.0.0"
+    },
+    "scripts": {
+        "codecept": "vendor/bin/codecept"
+    }
+}

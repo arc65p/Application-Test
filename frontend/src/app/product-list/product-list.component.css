@@ -1,0 +1,27 @@
+.search-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.button-container {
+  display: flex;
+  padding-right: 50px;
+}
+
+#removeProduct {
+  margin-left: 10px;
+}
+
+
+
+.title {
+  font-size: xx-large;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.ag-header-cell-label {
+  text-align: center !important;
+}

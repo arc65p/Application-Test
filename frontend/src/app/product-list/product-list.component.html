@@ -1,0 +1,26 @@
+
+<div class="container">
+  <div class="header">
+    <div class="title">{{title}}</div>
+  </div>
+
+  <div class="search-block">
+    <input type="text" id="filter-text-box" placeholder="Search..." [(ngModel)]="searchText"
+      (ngModelChange)="onFilterTextBoxChanged()" />
+    <div class="button-container">
+      <button mat-button (click)="openAddProductDialog()" id="addProduct" class="btn btn-success">Add Product</button>
+
+      <button type="button" id="removeProduct" class="btn btn-danger" (click)="showDialog()"
+        [disabled]="disable">Delete Products</button>
+
+    </div>
+  </div>
+
+  <div>
+    <ag-grid-angular style="width: 1300px; height: 500px;" class="ag-theme-alpine" [rowData]="ProductDetails"
+      (gridReady)="onGridReady($event)" [defaultColDef]="defaultColDef" [columnDefs]="columnDefs" [pagination]="true"
+      [rowSelection]="rowSelection" (selectionChanged)="onSelectionChanged()" [gridOptions]="gridOptions" [paginationPageSize]="paginationPageSize">
+    </ag-grid-angular>
+  </div>
+</div>
+<app-confirm-dialog></app-confirm-dialog>  

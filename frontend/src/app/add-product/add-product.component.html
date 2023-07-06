@@ -1,0 +1,87 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Edit Product' : 'Add Product' }}</h2>
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <input type="hidden" formControlName="id">
+
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input type="text" id="name" class="form-control" formControlName="name">
+    <div *ngIf="productForm.get('name')?.invalid && (productForm.get('name')?.touched || productForm.get('name')?.dirty)">
+      <div *ngIf="productForm.get('name')?.errors?.['required']" class="error">
+        name is required.
+      </div>
+      <div *ngIf="productForm.get('name')?.errors?.['pattern']" class="error">
+        Please enter a valid name with only letters and spaces
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="state" class="form-label">State</label>
+    <input type="text" id="state" class="form-control" formControlName="state">
+    <div *ngIf="productForm.get('state')?.invalid && (productForm.get('state')?.touched || productForm.get('state')?.dirty)">
+      <div *ngIf="productForm.get('state')?.errors?.['required']" class="error">
+        State is required.
+      </div>
+      <div *ngIf="productForm.get('state')?.errors?.['maxlength']" class="error">
+        State must be at most 2 characters.
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="name" class="form-label">Zip</label>
+    <input type="text" id="zip" class="form-control" formControlName="zip">
+    <div *ngIf="productForm.get('zip')?.invalid && (productForm.get('zip')?.touched || productForm.get('zip')?.dirty)">
+      <div *ngIf="productForm.get('zip')?.errors?.['required']" class="error">
+        Zip is required.
+      </div>
+      <div *ngIf="productForm.get('zip')?.errors?.['pattern']" class="error">
+        Please enter a valid zip.
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="amount" class="form-label">Amount</label>
+    <input type="text" id="amount" class="form-control" formControlName="amount" appValidateFloat>
+    <div *ngIf="productForm.get('amount')?.invalid && (productForm.get('amount')?.touched || productForm.get('amount')?.dirty)">
+      <div *ngIf="productForm.get('amount')?.errors?.['required']" class="error">
+        Amount is required.
+      </div>
+      <div *ngIf="(productForm.get('amount')?.errors?.['float'] && productForm.get('amount')?.dirty && productForm.get('amount')?.value?.trim().length  !== 0) &&  productForm.get('amount')?.touched" class="error">
+        Please enter a valid amount.
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="qty" class="form-label">Quantity</label>
+    <input type="text" id="qty" class="form-control" formControlName="qty">
+    <div *ngIf="productForm.get('qty')?.invalid && (productForm.get('qty')?.touched || productForm.get('qty')?.dirty)">
+      <div *ngIf="productForm.get('qty')?.errors?.['required']" class="error">
+        Quantity is required.
+      </div>
+      <div *ngIf="productForm.get('qty')?.errors?.['pattern']" class="error">
+        Please enter a valid quantity.
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="item" class="form-label">Item</label>
+    <input type="text" id="item" class="form-control" formControlName="item" alphanumeric>
+    <div *ngIf="productForm.get('item')?.invalid && (productForm.get('item')?.touched || productForm.get('item')?.dirty)">
+      <div *ngIf="productForm.get('item')?.errors?.['required']" class="error">
+        Item is required.
+      </div>
+      <div *ngIf="(productForm.get('item')?.errors?.['alphanumeric']  && productForm.get('item')?.dirty && productForm.get('item')?.value?.trim().length  !== 0) &&  productForm.get('item')?.touched" class="error">
+        Please enter a valid alphanumeric value for Item.
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">Submit</button>
+  <a mat-button class="btn btn-primary cancel-btn" (click)="onCancel()">Cancel</a>
+
+</form>
